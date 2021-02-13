@@ -2,7 +2,7 @@
 Metabolite Annotation workflow (Multiple files in one ionization mode (e.g: here negative) using CluMSID_CAMERA_MetFrag_SIRIUS)
 
 ## Introduction
-This Workflow is developed with the objective to perform Metabolite Annotation from the Mass Spectrometry Files (mzml). Here, Dereplication is executed with MetFrag and SIRIUS. So, it is designed for obtaining results for known-known Metabolites.
+This Workflow is developed with the objective to perform Metabolite Annotation from the Mass Spectrometry Files (mzml). <br> Here, Dereplication is executed with MetFrag and SIRIUS. So, it is designed for obtaining results for known-known Metabolites.
 
 ## Input
 There should be "Three" input files: input mzml files and the QC file. Give a variable to both kind of files. Third is the inclusion list, This workflow specifically takes inclusion list to merge MS2 Spectra, hence you need inclusion list as csv. (if code modified,you can merge MS2 spectra without inlcusion list)
