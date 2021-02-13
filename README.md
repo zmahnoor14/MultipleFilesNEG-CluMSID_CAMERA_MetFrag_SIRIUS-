@@ -16,8 +16,12 @@ input_path_name ##here add the full directory to the folder where you have kept 
 Before we move onto the inputs, it is important to note that naming of the input files is very important, which will be explained in this section. <br> <br> There are three types of input files for this workflow: 
 * MS2 Spectral files, note that these .mzML files must contain precursor masses and their fragment spectral information.
 ```
-mzml_files <- list.files(input_path_name, pattern = "insert_the_pattern_for_files")#name all the mzml files using e.g: a project name and then number the files starting from 01 to onwards. For pattern, add the project name so that all the mzml files from that project are stored as a list in this variable
-mzml_files <- paste(input_path_name, mzml_files, sep ="")##this is important so that the mzml_files list contains the names along with the directory, to avoid any errors regarding the directory of inputs
+#name all the mzml files using e.g: a project name and then number the files starting from 01 to onwards. For pattern, add the project name so that all the mzml files from that project are stored as a list in this variable
+
+mzml_files <- list.files(input_path_name, pattern = "insert_the_pattern_for_files")
+
+##this is important so that the mzml_files list contains the names along with the directory, to avoid any errors regarding the directory of inputs
+mzml_files <- paste(input_path_name, mzml_files, sep ="")
 ```
 * Quality Control file, in this workflow, I have used one general QC file, which contains accurate precursor m/z and aids the annotation/ dereplication process, as it is generated with high resolution. Note that this is also a spectral file with .mzML extention
 ```
@@ -31,8 +35,13 @@ qc_file <- paste(input_path_name, "insert_QCfile_name.mzML", sep ="")
 | 102.26589 | Negative | 10.57 | 11.57 |
 
 ```
-inc_files <- list.files(input_path_name, pattern = "insert_the_pattern_for_inclusionlist_files")#name all the inc files using e.g: a project name and then number the files starting from 01 to onwards. For pattern, add the project name so that all the inc files from that project are stored as a list in this variable
-inc_files <- paste(input_path_name, mzml_files, sep ="")##this is important so that the inc_files list contains the names along with the directory, to avoid any errors regarding the directory of inputs
+#name all the inc files using e.g: a project name and then number the files starting from 01 to onwards. For pattern, add the project name so that all the inc files from that project are stored as a list in this variable
+
+inc_files <- list.files(input_path_name, pattern = "insert_the_pattern_for_inclusionlist_files")
+
+##this is important so that the inc_files list contains the names along with the directory, to avoid any errors regarding the directory of inputs
+
+inc_files <- paste(input_path_name, mzml_files, sep ="")
 ```
 The resulting input_files dataframe looks like this.
 
@@ -44,7 +53,7 @@ The resulting input_files dataframe looks like this.
 ## Installations
 ### R-packages for metabolomics (BiocManager Version 1.30.10)
 #### CluMSID Version 1.2.1
-GitHub: https://github.com/tdepke/CluMSID. The Workflow starts with CluMSID which performs two functions: it extracts the MS2 Spectra and Merges the MS2 spectra (here, according to the features present in inclusion list).
+GitHub: <https://github.com/tdepke/CluMSID>. The Workflow starts with CluMSID which performs two functions: it extracts the MS2 Spectra and Merges the MS2 spectra (here, according to the features present in inclusion list).
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
@@ -53,7 +62,7 @@ BiocManager::install("CluMSID")
 library(CluMSID)
 ```
 #### CAMERA Version 1.42.0
-GitHub: https://github.com/sneumann/CAMERA. Next is CAMERA which performs the isotope and adduct annotation. It also groups the features possibly coming from same compound.
+GitHub: <https://github.com/sneumann/CAMERA>. Next is CAMERA which performs the isotope and adduct annotation. It also groups the features possibly coming from same compound.
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
@@ -80,24 +89,47 @@ library(matrixStats)##### to calculate median for rt in sec from inclusion list
 
 ### Metabolome Annotation Softwares (CommandLine)
 #### MetFrag
-GitHub: https://github.com/ipb-halle/MetFrag. MetFrag is a software for annotation of high precision LC-MS/MS data. In order to use MetFragCL, download the jar file from https://ipb-halle.github.io/MetFrag/projects/metfragcl/ <br>
+GitHub: <https://github.com/ipb-halle/MetFrag>. MetFrag is a software for annotation of high precision LC-MS/MS data. In order to use MetFragCL, download the jar file from <https://ipb-halle.github.io/MetFrag/projects/metfragcl/> <br>
 **Important** Keep this jar file (MetFrag2.4.5-CL.jar) in the Result folder (under the name of: path_name variable described in the input section)
 #### SIRIUS
-GitHub: https://github.com/boecker-lab/sirius. Sirius is a toolkit to peform metabolomics analysis on LC-MS/MS data. Tools used in this workflow are Formula Identification tool, CSI:FingerID and CANOPUS. The version I used is SIRIUS 4.5.1 which has been updated to 4.6.1 (this shouldn't cause any problem, but report if it does). It is important to download the latest version and not the old version 4.0.1<br> 
+GitHub: <https://github.com/boecker-lab/sirius>. Sirius is a toolkit to peform metabolomics analysis on LC-MS/MS data. Tools used in this workflow are Formula Identification tool, CSI:FingerID and CANOPUS. The version I used is SIRIUS 4.5.1 which has been updated to 4.6.1 (this shouldn't cause any problem, but report if it does). It is important to download the latest version and not the old version 4.0.1<br> 
 To sucessfully install SIRIUS, follow as mentioned (Mac user):
-* download the SIRIUS+CSI:FingerID GUI and CLI zip folder from https://bio.informatik.uni-jena.de/software/sirius/
+* download the SIRIUS+CSI:FingerID GUI and CLI zip folder from <https://bio.informatik.uni-jena.de/software/sirius/>
 * Double click the zip file to unzip. Now right click the 'sirius-gui'
  application file and click on 'Show Content'. In this folder, you will find another folder named as MacOS, which contains the command line 'sirius'. 
- * To use this command line, add the following path to either .bash_profile or .z_profile. You can find these files easily using FileZilla (FTP client, available for Mac, Windows and Linux) and then opening your user name folder. There are other ways too using terminal. When you open your .bash_profile, add this to the $PATH variable:
+ * To use this command line, add the following path to either .bash_profile or .zprofile. You can find these files easily using FileZilla (FTP client, available for Mac, Windows and Linux) and then opening your user name folder. There are other ways too using terminal. When you open your .bash_profile, add this to the $PATH variable:
  ```
  PATH="/Users/name/Projectfiles/sirius.app/Contents/MacOS/:${PATH}"
 export PATH
 ```
 Here instead of /Users/name/Projectfiles, add you directory for 'sirius'. I have described above how to reach to this 'sirius' file. Now, open terminal and just type ```sirius```. If it runs, then you are all set to use the code and SIRIUS.
 
-## How to use the Workflow
+## Usage of the Workflow
+You need either R, R-Studio or R kernel on Jupyter Notebook for this workflow. In case your Jupyter Notebook doesn't have R kernel, here's how to install it:  [Install R kernel on Jupyter Notebook](https://simply-python.com/2019/06/24/running-r-on-jupyter-notebook-with-r-kernel-no-anaconda/).
+1. Open the Jupyter Notebook and run R kernel
+2. In this repository you will find two jupyter notebooks named: **MultipleFilesNEG(CluMSID_CAMERA_MetFrag_SIRIUS).ipynb** for negative mode files and **MultipleFilesPOS(CluMSID_CAMERA_MetFrag_SIRIUS).ipynb** for positive mode files. Follow the notebook according to the mode.
+3. Install CluMSID, CAMERA, dplyr, stringr and matrixStats as described above and load these packages.
+4. Now, set inputs which are in the second cell of the notebook. First is the path_name which should be the directory where you want to store the results; this same directory should contain the MetFrag jar file named as MetFrag2.4.5-CL.jar. Next is the input_path_name which is the directory containing all your inputs; MS2 spectral files .mzML, QC file .mzML and all inclusion lists .csv.
+Follow the input instructions given above.
+5. The third and final cell can be then used without any modifications. Detail of each function and loop is described in comments throughout the code.
+ 
 
 ## Notes
 For now, this workflow is only available as a code.
 
-## Citations
+## References
+<a id="1">[1]</a> 
+Depke, Tobias & Franke, Raimo & Brönstrup, Mark. (2019).
+CluMSID: an R package for similarity-based clustering of tandem mass spectra to aid feature annotation in metabolomics. 
+Bioinformatics. 
+
+<a id="2">[2]</a>
+Kuhl, C., Tautenhahn, R., Böttcher, C., Larson, T. R., & Neumann, S. (2012). CAMERA: an integrated strategy for compound spectra extraction and annotation of liquid chromatography/mass spectrometry data sets. Analytical chemistry, 84(1), 283–289.
+
+<a id="3">[3]</a>
+Ruttkies, C., Schymanski, E.L., Wolf, S. et al. (2016). MetFrag relaunched: incorporating strategies beyond in silico fragmentation. J Cheminform 8, 3.
+
+<a id="4">[4]</a> 
+Kai Dührkop, Markus Fleischauer, Marcus Ludwig, Alexander A. Aksenov, Alexey V. Melnik, Marvin Meusel, Pieter C. Dorrestein, Juho Rousu and Sebastian Böcker. (2019).
+SIRIUS4: a rapid tool for turning tandem mass spectra into metabolite structure information.
+Nat Methods.
