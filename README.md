@@ -1,4 +1,4 @@
-# MultipleFilesNEG-CluMSID_CAMERA_MetFrag_SIRIUS-
+# MultipleFiles-CluMSID_CAMERA_MetFrag_SIRIUS-
 Metabolite Annotation workflow (Multiple files in one ionization mode (e.g: here negative) using CluMSID_CAMERA_MetFrag_SIRIUS)
 
 ## Introduction
