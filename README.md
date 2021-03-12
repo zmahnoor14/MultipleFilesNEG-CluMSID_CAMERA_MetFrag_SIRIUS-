@@ -29,7 +29,7 @@ qc_file <- paste(input_path_name, "insert_QCfile_name.mzML", sep ="")
 ```
 * Inclusion lists (.csv); these files are important for the workflow. For each MS2 spectral file (Project_01.mzML), there is corresponding inclusion list (Project_InclusionList_01.csv) which contains information about precursor mass, the start and end retention time in minutes and the polarity. For example:
 
-| Mass[m/z] | Polarity | Start[min] | End[min.] |
+| Mass[m/z] | Polarity | Start[min] | End[min] |
 | ----------- | ----------- | ----------- | ----------- |
 | 84.06544 | Positive | 5.84 | 6.84 |
 | 102.26589 | Negative | 10.57 | 11.57 |
