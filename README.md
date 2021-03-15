@@ -14,7 +14,7 @@ path_name ##here add the full directory to the folder where you want to keep the
 input_path_name ##here add the full directory to the folder where you have kept the input files
 ```
 Before we move onto the inputs, it is important to note that naming of the input files is very important, which will be explained in this section. <br> <br> There are three types of input files for this workflow: 
-* MS2 Spectral files; note that these .mzML files must contain precursor masses and their fragment spectral information.
+* MS2 Spectral files; note that these .mzML files must contain precursor masses and their fragment spectral information. Also it is recommended to use centroid spectra. This workflow assumes that you have already performed peak picking on MS1 data (spectral information in inclusion lists) and from these peaks, performed MS2.
 ```
 #IMPORTANT: name all the mzml files using e.g: a project name and then number the files starting from 01 to onwards. For pattern, add the project name so that all the mzml files from that project are stored as a list in this variable
 
