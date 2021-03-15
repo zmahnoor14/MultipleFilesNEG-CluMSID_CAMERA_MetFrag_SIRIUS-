@@ -2,7 +2,7 @@
 Metabolome Annotation Workflow takes multiple .mzML spectral files and provides candidates per m/z and per compound predicted by [MetFrag](https://ipb-halle.github.io/MetFrag/) and [SIRIUS](https://bio.informatik.uni-jena.de/software/sirius/) respectively.
 
 ## Summary of the Workflow
-The objective of this Workflow is to perform Metabolite Annotation, specifically dereplication of known-known compounds in the spectral files. The Dereplication is performed using the following Databases (using the Metfrag and SIRIUS softwares):<br>PubChem, KEGG, HMDB, MeSH, KNApSAck, ChEBI, HSBD, MaConDa, MetaCyc, GNPS, ZincBio, UNDP, YMDB, PlantCyc, NORMAN.<br> <br> This workflow is divied into three parts.<br> 
+The objective of this Workflow is to perform Metabolite Annotation, specifically dereplication of known-known compounds in the spectral files. The Dereplication is performed using the following Databases (using the Metfrag and SIRIUS softwares):<br>PubChem, KEGG, HMDB, COCONUT, MeSH, KNApSAck, ChEBI, HSBD, MaConDa, MetaCyc, GNPS, ZincBio, UNDP, YMDB, PlantCyc, NORMAN.<br> <br> This workflow is divided into three parts.<br> 
 * Reading MS2 spectra (.mzML files) and merging the Spectra that belong to one precursor m/z **(CluMSID)**.
 * Adduct Annotation, finding out same compound m/z values and extracting neutral precursor m/z values **(CAMERA)**.
 * Metabolite Identification (Dereplication) for each precursor m/z **(MetFrag & SIRIUS)**.
